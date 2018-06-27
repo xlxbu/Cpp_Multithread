@@ -3,4 +3,4 @@ project(Multithread)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(Multithread src/main.cpp)
+add_executable(Multithread src/main.cpp src/Apps/MyPrint.cpp src/Apps/MyPrint.h src/Apps/TrieNode.cpp src/Apps/TrieNode.h)
