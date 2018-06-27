@@ -15,6 +15,14 @@ TrieNode<T>::TrieNode(bool x, int y)
           prev(weak_ptr<TrieNode>()) {}
 
 template <class T>
+void TrieNode<T>::operator()(bool x, int y) {
+    isword = x;
+    val = y;
+    next = vector<shared_ptr<TrieNode>>(26, nullptr);
+    prev = weak_ptr<TrieNode>();
+}
+
+template <class T>
 TrieNode<T>::~TrieNode() {
     cout << "delete trie node " << val << endl;
 }

@@ -16,6 +16,7 @@ public:
     vector<shared_ptr<TrieNode>> next;
     weak_ptr<TrieNode> prev;
     TrieNode(bool x, int y);
+    void operator()(bool x, int y);
     virtual ~TrieNode();
     T data;
 

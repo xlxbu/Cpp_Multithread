@@ -1,11 +1,22 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <thread>
 #include "Apps/MyPrint.h"
 #include "Apps/TrieNode.h"
 #include "Apps/TrieNode.cpp"
 
 using namespace std;
+
+
+void start_multiple_thread() {
+    shared_ptr<TrieNode<int>> th1_node  = make_shared<TrieNode<int>>(false, 10);
+    thread th1(&TrieNode<int>::writedata, th1_node, 10);
+    shared_ptr<TrieNode<int>> th2_node  = make_shared<TrieNode<int>>(false, 20);
+    thread th2(&TrieNode<int>::writedata, th2_node, 20);
+    th1.join();
+    th2.join();
+}
 
 int main() {
     shared_ptr<MyPrint> a = make_shared<MyPrint>();
@@ -35,10 +46,15 @@ int main() {
      * try it by uncomment the following line of code*/
 //    root->next[0]->next[0] = root;
 
-    root->writedata(10);
+
+//    thread th2 = thread(TrieNode<string>(false, 20));
+    start_multiple_thread();
+
     cout << "the data in root is: " << root->readdata() << endl;
     unique_root->writedata("11");
     cout << "the data in root is: " << unique_root->readdata() << endl;
+
+
 
     return 0;
 }
