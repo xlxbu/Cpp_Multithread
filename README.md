@@ -1,6 +1,6 @@
 # Cpp_Multithread
 
-This is an example for cpp code. In this example, we use the follwoing tech of cpp.
+This is an example for cpp coding. In this example, we use the follwoing tech of cpp.
 
 1. template
 2. multithread
