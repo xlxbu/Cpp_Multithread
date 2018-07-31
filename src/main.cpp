@@ -6,6 +6,7 @@
 #include "Apps/TrieNode.h"
 #include "Apps/TrieNode.cpp"
 #include "Apps/Semaphore.h"
+#include "Apps/KidPrint.h"
 
 using namespace std;
 
@@ -35,6 +36,7 @@ void start_multiple_thread() {
 
 int main() {
     shared_ptr<MyPrint> a = make_shared<MyPrint>();
+    unique_ptr<MyPrint> b = make_unique<KidPrint>();
     vector<int> nums;
     for(int i=0; i<10; i++){
         nums.push_back(i);
