@@ -8,6 +8,7 @@
 
 class MyPrint {
 public:
+    MyPrint(int x);
     void myPrint(int x);
     virtual ~MyPrint();
 private:

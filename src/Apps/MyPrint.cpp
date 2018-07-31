@@ -8,6 +8,10 @@
 
 using namespace std;
 
+MyPrint::MyPrint(int x) {
+  cout << "MyPrint construtor: " << to_string(x) << endl;
+}
+
 void
 MyPrint::myPrint(int x){
   cout << "hello " << to_string(x) << endl;
