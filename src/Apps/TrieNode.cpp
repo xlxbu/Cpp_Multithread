@@ -3,7 +3,9 @@
 //
 
 #include "TrieNode.h"
+#include <chrono>
 #include <iostream>
+#include <thread>
 
 using namespace std;
 
@@ -30,6 +32,7 @@ TrieNode<T>::~TrieNode() {
 template <class T>
 void TrieNode<T>::writedata(T param) {
     data = param;
+    this_thread::sleep_for(chrono::seconds(5));
 }
 
 template <class T>

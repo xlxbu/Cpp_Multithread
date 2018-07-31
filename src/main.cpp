@@ -5,17 +5,32 @@
 #include "Apps/MyPrint.h"
 #include "Apps/TrieNode.h"
 #include "Apps/TrieNode.cpp"
+#include "Apps/Semaphore.h"
 
 using namespace std;
 
+Semaphore smph(2);
+
+template <class T>
+void write_to_node (shared_ptr<TrieNode<T>> n, T d) {
+    smph.wait();
+    n->writedata(d);
+    smph.notify();
+}
 
 void start_multiple_thread() {
     shared_ptr<TrieNode<int>> th1_node  = make_shared<TrieNode<int>>(false, 10);
-    thread th1(&TrieNode<int>::writedata, th1_node, 10);
+    thread th1(write_to_node<int>, th1_node, 10);
+//    thread th1(&TrieNode<int>::writedata, th1_node, 10);
     shared_ptr<TrieNode<int>> th2_node  = make_shared<TrieNode<int>>(false, 20);
-    thread th2(&TrieNode<int>::writedata, th2_node, 20);
+    thread th2(write_to_node<int>, th2_node, 20);
+//    thread th2(&TrieNode<int>::writedata, th2_node, 20);
+    shared_ptr<TrieNode<int>> th3_node  = make_shared<TrieNode<int>>(false, 30);
+    thread th3(write_to_node<int>, th3_node, 30);
+//    thread th3(&TrieNode<int>::writedata, th3_node, 30);
     th1.join();
     th2.join();
+    th3.join();
 }
 
 int main() {
